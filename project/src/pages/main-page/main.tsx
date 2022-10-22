@@ -1,11 +1,11 @@
 import {Offer} from '../../components/offer';
+import {OfferType} from '../mock/offers';
 
-type CardProps = {
-  cardsCount: number;
+type OfferProps = {
+  offers: OfferType[];
 }
 
-export function Main({cardsCount}: CardProps): JSX.Element {
-  const cards = [...(Array(cardsCount) as number[])].map((item, i) => <Offer key={item}/>);
+export function Main({offers}: OfferProps) : JSX.Element {
   return (
     <body className="page page--gray page--main">
       <div style={{display: 'none'}}>
@@ -94,7 +94,7 @@ export function Main({cardsCount}: CardProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{cardsCount} places to stay in Amsterdam</b>
+              <b className="places__found">12 places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -111,7 +111,7 @@ export function Main({cardsCount}: CardProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {cards}
+                {offers.map((offer) => <Offer offer={offer} key={offer.id}/>)}
               </div>
             </section>
             <div className="cities__right-section">

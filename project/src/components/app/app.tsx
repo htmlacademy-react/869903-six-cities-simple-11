@@ -1,12 +1,13 @@
 import {Main} from '../../pages/main-page/main';
+import {OfferType} from '../../pages/mock/offers';
 
 type AppCardsProps = {
-  cardsCount: number;
+  offers: OfferType[];
 }
 
-function App({cardsCount}: AppCardsProps): JSX.Element {
+function App({offers}: AppCardsProps): JSX.Element {
   return (
-    <Main cardsCount={cardsCount}/>
+    <Main offers={offers}/>
   );
 }
 
