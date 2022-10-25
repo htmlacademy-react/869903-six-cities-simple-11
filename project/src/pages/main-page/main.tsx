@@ -1,5 +1,5 @@
 import {Offer} from '../../components/offer';
-import {OfferType} from '../mock/offers';
+import {OfferType} from '../../offers';
 
 type OfferProps = {
   offers: OfferType[];
@@ -94,7 +94,7 @@ export function Main({offers}: OfferProps) : JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">12 places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>

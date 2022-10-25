@@ -1,4 +1,4 @@
-import {OfferType} from '../pages/mock/offers';
+import {OfferType} from '../offers';
 
 type OfferComponentProps = {
   offer: OfferType;
