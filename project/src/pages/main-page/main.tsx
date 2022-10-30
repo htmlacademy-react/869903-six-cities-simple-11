@@ -1,5 +1,5 @@
-import {Offer} from '../../components/offer';
-import {OfferType} from '../../offers';
+import {OfferType} from '../../mock/offers';
+import {OffersList} from '../../components/offers-list/offers-list';
 
 type OfferProps = {
   offers: OfferType[];
@@ -110,9 +110,7 @@ export function Main({offers}: OfferProps) : JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {offers.map((offer) => <Offer offer={offer} key={offer.id}/>)}
-              </div>
+              <OffersList offers={offers}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
