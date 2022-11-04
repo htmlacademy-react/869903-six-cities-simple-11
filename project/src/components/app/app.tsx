@@ -14,7 +14,7 @@ function App({offers}: AppCardsProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Main offers={offers}/>} path={AppRoute.Root} />
+        <Route element={<Main offers={offers} />} path={AppRoute.Root} />
         <Route element={<Login />} path={AppRoute.Login} />
         <Route element={<Room />} path={`${AppRoute.Room}/:id`} />
         <Route element={<Error />} path={AppRoute.Error} />
