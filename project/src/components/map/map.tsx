@@ -12,7 +12,7 @@ type MapProps = {
 
 const defaultCustomIcon = leaflet.icon({
   iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
+  iconSize: [27, 39],
   iconAnchor: [20, 40],
 });
 
@@ -37,7 +37,7 @@ function Map({city, points}: MapProps): JSX.Element {
     }
   }, [map, points]);
 
-  return <div style={{height: '500px'}} ref={mapRef}></div>;
+  return <div style={{height: '100%'}} ref={mapRef}></div>;
 }
 
 export default Map;
