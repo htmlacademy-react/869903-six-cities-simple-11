@@ -1,3 +1,14 @@
+type LocationCoordinates = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
+export type OfferCity = {
+  location: LocationCoordinates;
+  name: string;
+}
+
 export type OfferType = {
   id: number;
   img: string[];
@@ -11,14 +22,8 @@ export type OfferType = {
   isPremium: boolean;
   maxAdults: number;
   bedrooms :number;
-  city: {
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-    };
-    name: string;
-  };
+  city: OfferCity;
+  location: LocationCoordinates;
     host: {
       avatarUrl: string;
       id: number;
@@ -43,11 +48,16 @@ export const offers: OfferType[] = [
     ],
     city: {
       location: {
-        latitude: 11.4949437,
-        longitude: 22.48336229,
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
         zoom: 10
       },
       name: 'amsterdam'
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8,
     },
     host: {
       avatarUrl: 'img/avatar-max.jpg',
@@ -84,11 +94,16 @@ export const offers: OfferType[] = [
     ],
     city: {
       location: {
-        latitude: 65.476255,
-        longitude: 32.985383,
+        latitude: 52.3609553943508,
+        longitude: 4.85309666406198,
         zoom: 10
       },
       name: 'moscow'
+    },
+    location: {
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
+      zoom: 8,
     },
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
@@ -123,11 +138,16 @@ export const offers: OfferType[] = [
     ],
     city: {
       location: {
-        latitude: 14.559378,
-        longitude: 44.449272,
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
         zoom: 10
       },
       name: 'sochi'
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 8,
     },
     host: {
       avatarUrl: 'img/avatar-max.jpg',
@@ -163,11 +183,16 @@ export const offers: OfferType[] = [
     ],
     city: {
       location: {
-        latitude: 52.456739,
-        longitude: 12.895168,
+        latitude: 52.3809553943508,
+        longitude: 4.929309666406198,
         zoom: 10
       },
       name: 'london'
+    },
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.929309666406198,
+      zoom: 8,
     },
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
