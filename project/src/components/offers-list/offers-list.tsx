@@ -8,6 +8,7 @@ type OfferProps = {
 
 export function OffersList({offers}: OfferProps) {
   const [ , setActiveCard] = useState<number>();
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => <Offer offer={offer} key={offer.id} onPlaceCardMouseOver={() => {setActiveCard(offer.id);}}/>)}
