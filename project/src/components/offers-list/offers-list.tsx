@@ -11,7 +11,7 @@ export function OffersList({offers}: OfferProps) {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer) => <Offer offer={offer} key={offer.id} onPlaceCardMouseOver={() => {setActiveCard(offer.id);}}/>)}
+      {offers.map((offer) => <Offer offer={offer} key={offer.id} onSetActiveOffer={() => {setActiveCard(offer.id);}}/>)}
     </div>
   );
 }

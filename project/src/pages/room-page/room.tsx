@@ -6,6 +6,8 @@ import {ReviewsList} from '../../components/reviews-list/reviews-list';
 import {reviews} from '../../mock/reviews';
 import Map from '../../components/map/map';
 import {OffersList} from '../../components/offers-list/offers-list';
+import {useState} from 'react';
+import {Point} from '../../types/types';
 
 type NearOffers = {
   offers: OfferType[];
@@ -15,6 +17,8 @@ export function Room(props: NearOffers) {
   const { id } = useParams();
   const roomData = offers.find((offer) => offer.id === Number(id));
   const offersNear = props.offers.slice(0, 3);
+  const [selectedPoint, ] = useState<Point | undefined>(undefined);
+
 
   return (
     <main className="page__main page__main--property">
@@ -100,7 +104,7 @@ export function Room(props: NearOffers) {
           </div>
         </div>
         <section className="property__map map">
-          <Map city={offers[0].city} points={offersNear}/>
+          <Map city={offers[0].city} points={offersNear} selectedPoint={selectedPoint}/>
         </section>
       </section>
       <div className="container">
