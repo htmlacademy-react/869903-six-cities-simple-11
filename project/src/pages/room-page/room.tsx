@@ -7,7 +7,7 @@ import {reviews} from '../../mock/reviews';
 import Map from '../../components/map/map';
 import {OffersList} from '../../components/offers-list/offers-list';
 import {useAppSelector} from '../../store';
-import {useState} from "react";
+import {useState} from 'react';
 
 
 export function Room() {
