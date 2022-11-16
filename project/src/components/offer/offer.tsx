@@ -4,17 +4,16 @@ import {Link} from 'react-router-dom';
 
 type OfferComponentProps = {
   offer: OfferType;
-  onPlaceCardMouseOver: (id: number) => void;
-
+  onSetActiveOffer: (offer: OfferType | undefined) => void;
 }
 
 export function Offer(props: OfferComponentProps) {
   const { offer } = props;
   const { id, img, price, title, type, rating } = offer;
-  const { onPlaceCardMouseOver } = props;
+  const { onSetActiveOffer } = props;
 
   return (
-    <article className="cities__card place-card" id={id.toString()} onMouseOver={() => onPlaceCardMouseOver(id)}>
+    <article className="cities__card place-card" id={id.toString()} onMouseOver={() => {onSetActiveOffer(offer);}}>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Room}/${offer.id}`} target={'_blank'}>
           <img className="place-card__image" src={img[0]} width="260" height="200" alt="Place image" />

@@ -48,15 +48,15 @@ export const offers: OfferType[] = [
     ],
     city: {
       location: {
-        latitude: 52.3909553943508,
-        longitude: 4.85309666406198,
+        latitude: 48.864716,
+        longitude: 2.349014,
         zoom: 10
       },
-      name: 'amsterdam'
+      name: 'Paris'
     },
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.85309666406198,
+      latitude: 48.864716,
+      longitude: 2.349014,
       zoom: 8,
     },
     host: {
@@ -94,15 +94,15 @@ export const offers: OfferType[] = [
     ],
     city: {
       location: {
-        latitude: 52.3609553943508,
-        longitude: 4.85309666406198,
+        latitude: 50.935173,
+        longitude: 6.953101,
         zoom: 10
       },
-      name: 'moscow'
+      name: 'Cologne'
     },
     location: {
-      latitude: 52.3609553943508,
-      longitude: 4.85309666406198,
+      latitude: 50.935173,
+      longitude: 6.953101,
       zoom: 8,
     },
     host: {
@@ -142,7 +142,7 @@ export const offers: OfferType[] = [
         longitude: 4.929309666406198,
         zoom: 10
       },
-      name: 'sochi'
+      name: 'Amsterdam'
     },
     location: {
       latitude: 52.3909553943508,
@@ -183,15 +183,15 @@ export const offers: OfferType[] = [
     ],
     city: {
       location: {
-        latitude: 52.3809553943508,
-        longitude: 4.929309666406198,
+        latitude: 53.551086,
+        longitude: 9.993682,
         zoom: 10
       },
-      name: 'london'
+      name: 'Hamburg'
     },
     location: {
-      latitude: 52.3809553943508,
-      longitude: 4.929309666406198,
+      latitude: 53.551086,
+      longitude: 9.993682,
       zoom: 8,
     },
     host: {
