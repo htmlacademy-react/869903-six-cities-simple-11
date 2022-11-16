@@ -9,7 +9,7 @@ import {Point} from '../../types/types';
 type MapProps = {
   city: OfferCity;
   points: OfferType[];
-  selectedPoint: Point | undefined;
+  selectedPoint?: Point | undefined;
 };
 
 const defaultCustomIcon = leaflet.icon({

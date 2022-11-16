@@ -6,18 +6,22 @@ import {ReviewsList} from '../../components/reviews-list/reviews-list';
 import {reviews} from '../../mock/reviews';
 import Map from '../../components/map/map';
 import {OffersList} from '../../components/offers-list/offers-list';
-import {useState} from 'react';
-import {Point} from '../../types/types';
+import {useAppSelector} from '../../store';
+import {useState} from "react";
 
-type NearOffers = {
-  offers: OfferType[];
-}
 
-export function Room(props: NearOffers) {
+export function Room() {
   const { id } = useParams();
+
+  const [, setActiveOffer] = useState<OfferType | undefined>(undefined);
+
   const roomData = offers.find((offer) => offer.id === Number(id));
-  const offersNear = props.offers.slice(0, 3);
-  const [selectedPoint, ] = useState<Point | undefined>(undefined);
+
+  const offersList = useAppSelector((state) => state.list);
+
+  const activeCity = useAppSelector((state) => state.city);
+
+  const cityOffers = offersList.slice().filter((offer: OfferType) => offer.city.name === activeCity);
 
 
   return (
@@ -104,13 +108,13 @@ export function Room(props: NearOffers) {
           </div>
         </div>
         <section className="property__map map">
-          <Map city={offers[0].city} points={offersNear} selectedPoint={selectedPoint}/>
+          <Map city={offers[0].city} points={cityOffers}/>
         </section>
       </section>
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
-          <OffersList offers={offersNear} />
+          <OffersList offers={cityOffers} onSetActiveOffer={setActiveOffer}/>
         </section>
       </div>
     </main>
