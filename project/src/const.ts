@@ -18,3 +18,29 @@ export const CITY_FILTER = [
   'Hamburg',
   'Dusseldorf'
 ];
+
+export enum SortTypes {
+  Popular= 'popular',
+  PriceLowToHigh = 'PriceAscending',
+  PriceHighToLow = 'PriceDescending',
+  TopRatedFirst = 'RatingDescending'
+}
+
+export const sort = [
+  {
+    type: SortTypes.Popular,
+    name: 'Popular',
+  },
+  {
+    type: SortTypes.PriceLowToHigh,
+    name: 'Price: low to high',
+  },
+  {
+    type: SortTypes.PriceHighToLow,
+    name: 'Price: high to low',
+  },
+  {
+    type: SortTypes.TopRatedFirst,
+    name: 'Top rated first',
+  }
+];
