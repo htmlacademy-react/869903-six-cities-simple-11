@@ -10,7 +10,7 @@ type OfferSortingProps = {
 
 export function Sort({offers}: OfferSortingProps) {
   const dispatch = useAppDispatch();
-  const currentTypeSorting = useAppSelector((state) => state.typeSorting);
+  const currentTypeSorting = useAppSelector((state) => state.sortingType);
   const [openSorting, setOpenSorting] = useState(false);
 
   return (
@@ -29,7 +29,10 @@ export function Sort({offers}: OfferSortingProps) {
               key={item.type}
               className={`places__option ${currentTypeSorting === item.type ? 'places__option--active' : ''}`}
               tabIndex={0}
-              onClick={() => dispatch(changeTypeSorting(item.type))}
+              onClick={() => {
+                openSorting ? setOpenSorting(false) : setOpenSorting(true);
+                dispatch(changeTypeSorting(item.type));
+              }}
             >
               {item.name}
             </li>

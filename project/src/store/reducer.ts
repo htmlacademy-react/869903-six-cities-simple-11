@@ -5,7 +5,7 @@ import {changeCity, changeTypeSorting} from './action';
 const initialState = {
   city: 'Paris',
   list: offers,
-  typeSorting: 'popular',
+  sortingType: 'popular',
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -15,6 +15,6 @@ export const reducer = createReducer(initialState, (builder) => {
       state.city = city;
     })
     .addCase(changeTypeSorting, (state, action) => {
-      state.typeSorting = action.payload;
+      state.sortingType = action.payload;
     });
 });
