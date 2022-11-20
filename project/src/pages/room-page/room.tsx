@@ -13,7 +13,7 @@ import {useState} from 'react';
 export function Room() {
   const { id } = useParams();
 
-  const [, setActiveOffer] = useState<OfferType | undefined>(undefined);
+  const [activeOffer, setActiveOffer] = useState<OfferType | undefined>(undefined);
 
   const roomData = offers.find((offer) => offer.id === Number(id));
 
@@ -50,7 +50,7 @@ export function Room() {
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                <span style={{width: `${roomData!.rating! * PROPERTY_RATING}%`}}></span>
+                <span style={{width: `${roomData!.rating * PROPERTY_RATING}%`}}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="property__rating-value rating__value">{roomData?.rating}</span>
@@ -108,7 +108,7 @@ export function Room() {
           </div>
         </div>
         <section className="property__map map">
-          <Map city={offers[0].city} points={cityOffers}/>
+          <Map city={cityOffers[0].city.location} points={cityOffers} selectedPoint={activeOffer}/>
         </section>
       </section>
       <div className="container">

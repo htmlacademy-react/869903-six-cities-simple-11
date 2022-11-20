@@ -4,4 +4,5 @@ export const changeCity = createAction<{
   city:string;
 }>('city/change');
 
-export const fillOfferList = createAction('offer/fillList');
+export const changeTypeSorting = createAction<string>('offer/changeTypeSorting');
+

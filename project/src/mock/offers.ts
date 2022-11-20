@@ -1,4 +1,4 @@
-type LocationCoordinates = {
+export type LocationCoordinates = {
   latitude: number;
   longitude: number;
   zoom: number;
@@ -16,7 +16,7 @@ export type OfferType = {
   title: string;
   type: string;
   name: string;
-  rating?: number;
+  rating: number;
   description: string;
   goods: string[];
   isPremium: boolean;
@@ -61,7 +61,7 @@ export const offers: OfferType[] = [
     },
     host: {
       avatarUrl: 'img/avatar-max.jpg',
-      id: 5,
+      id: 9,
       isPro: false,
       name: 'Dick'
     },
@@ -76,6 +76,50 @@ export const offers: OfferType[] = [
     type: 'Apartment',
     id: 1,
   },
+  {
+    img: [
+      'img/room.jpg',
+      'img/amsterdam.jpg',
+      'img/studio-01.jpg',
+      'img/room.jpg',
+      'img/amsterdam.jpg',
+      'img/studio-01.jpg',
+    ],
+    goods: [
+      'Wi-Fi',
+      'Coffee machine'
+    ],
+    city: {
+      location: {
+        latitude: 48.864716,
+        longitude: 2.349014,
+        zoom: 10
+      },
+      name: 'Paris'
+    },
+    location: {
+      latitude: 48.885254,
+      longitude: 2.308581,
+      zoom: 8,
+    },
+    host: {
+      avatarUrl: 'img/avatar-max.jpg',
+      id: 5,
+      isPro: false,
+      name: 'Dick'
+    },
+    bedrooms: 2,
+    maxAdults: 4,
+    isPremium: true,
+    description: 'text',
+    rating: 4.2,
+    name: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
+    price: 700,
+    title: 'Апартаменты',
+    type: 'Apartment',
+    id: 10,
+  },
+
   {
     img: [
       'img/apartment-03.jpg',
@@ -151,7 +195,7 @@ export const offers: OfferType[] = [
     },
     host: {
       avatarUrl: 'img/avatar-max.jpg',
-      id: 15,
+      id: 18,
       isPro: false,
       name: 'Maria'
     },
@@ -210,4 +254,92 @@ export const offers: OfferType[] = [
     title: 'Отель',
     type: 'Hotel',
     id: 4,
+  },
+  {
+    img: [
+      'img/apartment-02.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-02.jpg',
+      'img/amsterdam.jpg',
+      'img/room.jpg',
+      'img/studio-01.jpg',
+    ],
+    goods: [
+      'Wi-Fi',
+      'Cabel TV',
+      'Fridge'
+    ],
+    city: {
+      location: {
+        latitude: 50.854662,
+        longitude: 4.369708,
+        zoom: 10
+      },
+      name: 'Brussels'
+    },
+    location: {
+      latitude: 50.854662,
+      longitude: 4.369708,
+      zoom: 8,
+    },
+    host: {
+      avatarUrl: 'img/avatar-max.jpg',
+      id: 1,
+      isPro: false,
+      name: 'Maria'
+    },
+    bedrooms: 2,
+    maxAdults: 1,
+    isPremium: true,
+    description: 'text',
+    rating: 3,
+    name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare.',
+    price: 756,
+    title: 'Дом',
+    type: 'House',
+    id: 9,
+  },
+  {
+    img: [
+      'img/apartment-02.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-02.jpg',
+      'img/amsterdam.jpg',
+      'img/room.jpg',
+      'img/studio-01.jpg',
+    ],
+    goods: [
+      'Wi-Fi',
+      'Cabel TV',
+      'Fridge'
+    ],
+    city: {
+      location: {
+        latitude: 51.232687,
+        longitude: 6.785522,
+        zoom: 10
+      },
+      name: 'Dusseldorf'
+    },
+    location: {
+      latitude: 51.232687,
+      longitude: 6.785522,
+      zoom: 8,
+    },
+    host: {
+      avatarUrl: 'img/avatar-max.jpg',
+      id: 11,
+      isPro: false,
+      name: 'Maria'
+    },
+    bedrooms: 2,
+    maxAdults: 1,
+    isPremium: true,
+    description: 'text',
+    rating: 3,
+    name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare.',
+    price: 756,
+    title: 'Дом',
+    type: 'House',
+    id: 11,
   }];
