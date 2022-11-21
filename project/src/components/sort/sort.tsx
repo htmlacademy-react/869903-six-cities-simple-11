@@ -1,8 +1,8 @@
-import {OfferType} from '../../mock/offers';
 import {useAppDispatch, useAppSelector} from '../../store';
 import {useState} from 'react';
 import {sort} from '../../const';
 import {changeTypeSorting} from '../../store/action';
+import {OfferType} from '../../types/offer-type';
 
 type OfferSortingProps = {
   offers: OfferType[];
@@ -30,7 +30,7 @@ export function Sort({offers}: OfferSortingProps) {
               className={`places__option ${currentTypeSorting === item.type ? 'places__option--active' : ''}`}
               tabIndex={0}
               onClick={() => {
-                openSorting ? setOpenSorting(false) : setOpenSorting(true);
+                setOpenSorting(!openSorting);
                 dispatch(changeTypeSorting(item.type));
               }}
             >

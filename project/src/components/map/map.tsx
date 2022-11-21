@@ -2,13 +2,13 @@ import {useRef, useEffect} from 'react';
 import useMap from '../../hooks/useMap';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const';
 import 'leaflet/dist/leaflet.css';
-import {LocationCoordinates, OfferType} from '../../mock/offers';
 import leaflet, { Marker} from 'leaflet';
+import {LocationCoordinates, OfferType} from '../../types/offer-type';
 
 type MapProps = {
   city: LocationCoordinates;
   points: OfferType[];
-  selectedPoint?: OfferType | undefined;
+  selectedPoint: OfferType | undefined;
 };
 
 const defaultCustomIcon = leaflet.icon({

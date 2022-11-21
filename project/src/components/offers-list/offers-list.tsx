@@ -1,7 +1,7 @@
 import {Offer} from '../offer/offer';
-import {OfferType} from '../../mock/offers';
 import {useAppSelector} from '../../store';
 import {SortTypes} from '../../const';
+import {OfferType} from '../../types/offer-type';
 
 type OfferProps = {
   offers: OfferType[];

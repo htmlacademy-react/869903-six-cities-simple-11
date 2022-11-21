@@ -1,8 +1,8 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { Map, Marker, TileLayer } from 'leaflet';
-import {LocationCoordinates} from '../mock/offers';
+import {LocationCoordinates} from '../types/offer-type';
 
-function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: LocationCoordinates): Map | null {
+export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: LocationCoordinates): Map | null {
 
   const [map, setMap] = useState<Map | null>(null);
   const isRefRendered = useRef<boolean>(false);
@@ -43,5 +43,3 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: LocationCoor
 
   return map;
 }
-
-export default useMap;
