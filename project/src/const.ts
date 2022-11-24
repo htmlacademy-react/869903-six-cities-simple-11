@@ -5,6 +5,12 @@ export enum AppRoute {
   Error = '*'
 }
 
+export enum ApiRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export const PROPERTY_RATING = 20;
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
@@ -44,3 +50,11 @@ export const sort = [
     name: 'Top rated first',
   }
 ];
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
+export const TIMEOUT_SHOW_ERROR = 2000;
