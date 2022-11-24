@@ -9,7 +9,7 @@ export default function Header ():JSX.Element {
   const dispatch = useAppDispatch();
   const userEmail = useAppSelector((state) => state.userEmail);
 
-  const onSignOut = () => {
+  const handleSignOutClick = () => {
     dispatch(logoutAction());
     dispatch(setUserEmail(null));
   };
@@ -36,7 +36,7 @@ export default function Header ():JSX.Element {
                   </li>
                   <li className="header__nav-item">
                     <Link className="header__nav-link"
-                      onClick={onSignOut}
+                      onClick={handleSignOutClick}
                       to={AppRoute.Root}
                     >
                       <span className="header__signout">Sign out</span>
