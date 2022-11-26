@@ -1,5 +1,7 @@
 import {PROPERTY_RATING} from '../../const';
 import {ReviewType} from '../../types/reviews';
+import { format } from 'date-fns';
+
 
 type ReviewComponentProps = {
   review: ReviewType;
@@ -12,7 +14,7 @@ export function Review(props: ReviewComponentProps) {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={review.user.avatar} width="54" height="54"
+          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54"
             alt="Reviews avatar"
           />
         </div>
@@ -30,7 +32,7 @@ export function Review(props: ReviewComponentProps) {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+        <time className="reviews__time" dateTime="2019-04-24">{format(new Date(review.date), 'dd/MM/yyyy')}</time>
       </div>
     </li>
   );

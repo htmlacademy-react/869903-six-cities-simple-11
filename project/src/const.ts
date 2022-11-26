@@ -9,6 +9,7 @@ export enum ApiRoute {
   Offers = '/hotels',
   Login = '/login',
   Logout = '/logout',
+  Reviews = '/comments',
 }
 
 export const PROPERTY_RATING = 20;

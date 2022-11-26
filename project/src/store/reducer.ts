@@ -1,7 +1,16 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, changeTypeSorting, loadOffers, requireAuthorization, setError, setUserEmail} from './action';
-import {OffersType} from '../types/offer-type';
+import {
+  changeCity,
+  changeTypeSorting,
+  loadOffers, loadReviews, nearOffers,
+  requireAuthorization, reviewsLoading, sendComment,
+  setError,
+  setUserEmail
+} from './action';
+import {OffersType, OfferType} from '../types/offer-type';
 import {AuthorizationStatus} from '../const';
+import { ReviewType} from '../types/reviews';
+import {CommentType} from '../types/comments';
 
 type InitialState = {
   city: string;
@@ -10,15 +19,23 @@ type InitialState = {
   authorizationStatus: AuthorizationStatus;
   error: string | null;
   userEmail: string | null;
+  nearOffers: OfferType[];
+  reviews: ReviewType[];
+  reviewsLoading: boolean;
+  comments: CommentType | null;
 }
 
 const initialState: InitialState = {
   city: 'Paris',
   offers: [],
+  nearOffers: [],
   sortingType: 'popular',
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
   userEmail: null,
+  reviews: [],
+  reviewsLoading: false,
+  comments: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -33,6 +50,9 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     })
+    .addCase(nearOffers, (state, action) => {
+      state.nearOffers = action.payload;
+    })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
     })
@@ -41,5 +61,14 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setUserEmail, (state, action) => {
       state.userEmail = action.payload;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.reviews = action.payload;
+    })
+    .addCase(reviewsLoading, (state, action) => {
+      state.reviewsLoading = action.payload;
+    })
+    .addCase(sendComment, (state, action) => {
+      state.comments = action.payload;
     });
 });

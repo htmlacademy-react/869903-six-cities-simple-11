@@ -1,13 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { OffersType } from '../types/offer-type';
+import {OffersType, OfferType} from '../types/offer-type';
 import {AppDispatch, Store} from '../types/store';
-import {loadOffers, requireAuthorization, setError, setUserEmail} from '../store/action';
+import {loadOffers, loadReviews, nearOffers, requireAuthorization, setError, setUserEmail} from '../store/action';
 import {ApiRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {AuthData} from '../types/auth-data';
 import {dropToken, saveToken} from './token';
 import {UserData} from '../types/user-data';
 import {store} from '../store';
+import { ReviewType} from '../types/reviews';
+import {CommentSendType, CommentType} from '../types/comments';
 
 export const clearErrorAction = createAsyncThunk(
   'offer/clearError',
@@ -32,6 +34,36 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     dispatch(loadOffers(data));
   }
 );
+
+export const fetchNearOffersAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: Store;
+  extra: AxiosInstance;
+}> (
+  'data/loadNearOffers',
+  async (id, {dispatch, extra: api}) => {
+    try {
+      const {data} = await api.get<OfferType[]>(`${ApiRoute.Offers}/${id}/nearby`);
+
+      dispatch(nearOffers(data));
+    } catch {
+      dispatch(nearOffers([] as OfferType[]));
+    }
+  }
+);
+
+export const fetchReviewsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: Store;
+  extra: AxiosInstance;
+}>(
+  'data/fetchComments',
+  async (id, {dispatch, extra: api}) => {
+    const response = await api.get<ReviewType[]>(`${ApiRoute.Reviews}/${id}`);
+    dispatch(loadReviews(response.data));
+  },
+);
+
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -74,4 +106,17 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     dropToken();
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   },
+);
+
+export const sendNewComment = createAsyncThunk<void, CommentSendType, {
+  dispatch: AppDispatch;
+  state: Store;
+  extra: AxiosInstance;
+}>(
+  'data/sendComment',
+  async ({comment, rating, hotelId}, {dispatch, extra: api}) => {
+
+    await api.post<CommentType>(`${ApiRoute.Reviews}/${hotelId}`, {comment, rating});
+    store.dispatch(fetchReviewsAction(hotelId.toString()));
+  }
 );

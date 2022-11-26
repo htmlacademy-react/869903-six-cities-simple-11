@@ -1,9 +1,9 @@
 import {Main} from '../../pages/main-page/main';
 import {Login} from '../../pages/login-page/login';
-import {Room} from '../../pages/room-page/room';
 import {Error} from '../../pages/error/error';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import {Room} from '../../pages/room-page/room';
 
 
 function App(): JSX.Element {

@@ -13,7 +13,7 @@ export function Offer(props: OfferComponentProps) {
   return (
     <article className="cities__card place-card" id={offer.id.toString()} onMouseOver={() => {onSetActiveOffer(offer);}} onMouseLeave={ () => onSetActiveOffer(undefined) }>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${AppRoute.Room}/${offer.id}`} target={'_blank'}>
+        <Link to={`${AppRoute.Room}/${offer.id}`}>
           <img className="place-card__image" src={offer.images[1]} width="260" height="200" alt="Place image" />
         </Link>
       </div>

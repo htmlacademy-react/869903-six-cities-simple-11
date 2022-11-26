@@ -1,18 +1,15 @@
 import {FormEvent, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from '../../store';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate, Navigate} from 'react-router-dom';
 import {AuthData} from '../../types/auth-data';
 import {loginAction} from '../../services/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import {Main} from '../main-page/main';
-
 
 export function Login(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const isAuth: boolean = useAppSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
-  const validPassword = /(?=.*[0-9])(?=.*[a-z])[0-9a-z]/;
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -26,16 +23,11 @@ export function Login(): JSX.Element {
 
 
     if (loginRef.current !== null && passwordRef.current !== null) {
-      const arrPassword = passwordRef.current?.value.split(/\s+/);
-      for (const password of arrPassword) {
-        if (validPassword.test(password)) {
-          onSubmit({
-            login: loginRef.current.value,
-            password: passwordRef.current.value,
-          });
-          navigate('/');
-        }
-      }
+      onSubmit({
+        login: loginRef.current.value,
+        password: passwordRef.current.value,
+      });
+      navigate('/');
     }
   };
 
@@ -98,8 +90,11 @@ export function Login(): JSX.Element {
                   <input className="login__input form__input"
                     type="password"
                     name="password"
+                    id="password"
                     placeholder="Password"
                     ref={passwordRef}
+                    pattern="^(?=.*\d)(?=.*[a-zA-Z]).*$"
+                    title="Пароль должен содержать хотя бы одну букву и цифру"
                     required
                   />
                 </div>
@@ -119,7 +114,7 @@ export function Login(): JSX.Element {
     );
   } else {
     return (
-      <Main />
+      <Navigate to={'/'} />
     );
   }
 }
