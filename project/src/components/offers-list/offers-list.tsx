@@ -1,20 +1,16 @@
 import {Offer} from '../offer/offer';
-import {store, useAppSelector} from '../../store';
+import { useAppSelector} from '../../store';
 import {SortTypes} from '../../const';
 import {OfferType} from '../../types/offer-type';
-import {useEffect} from 'react';
-import {fetchNearOffersAction} from '../../services/api-actions';
 import {Loading} from '../loading/loading';
-import {useParams} from 'react-router-dom';
 
 type OfferProps = {
   offers: OfferType[];
-  onSetActiveOffer: (offer: OfferType | undefined) => void;
+  onSetActiveOffer?: (offer: OfferType | undefined) => void;
 }
 
 export function OffersList({offers, onSetActiveOffer}: OfferProps) {
   const typeSorting = useAppSelector((state) => state.sortingType);
-  const params = useParams();
   const isLoading = useAppSelector((state) => state.reviewsLoading);
 
   switch (typeSorting) {
@@ -32,11 +28,8 @@ export function OffersList({offers, onSetActiveOffer}: OfferProps) {
     default:
       break;
   }
-  useEffect(() => {
-    if(params.id) {
-      store.dispatch(fetchNearOffersAction(params.id.toString()));
-    }
-  }, [params.id]);
+
+
   if (isLoading) {
     return (<Loading />);
   } else {

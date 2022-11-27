@@ -4,16 +4,16 @@ import {OfferType} from '../../types/offer-type';
 
 type OfferComponentProps = {
   offer: OfferType;
-  onSetActiveOffer: (offer: OfferType | undefined) => void;
+  onSetActiveOffer?: (offer: OfferType | undefined) => void;
 }
 
 export function Offer(props: OfferComponentProps) {
   const { offer, onSetActiveOffer } = props;
 
   return (
-    <article className="cities__card place-card" id={offer.id.toString()} onMouseOver={() => {onSetActiveOffer(offer);}} onMouseLeave={ () => onSetActiveOffer(undefined) }>
+    <article className="cities__card place-card" id={offer.id.toString()} onMouseOver={() => {onSetActiveOffer!(offer);}} onMouseLeave={ () => onSetActiveOffer!(undefined) }>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${AppRoute.Room}/${offer.id}`}>
+        <Link to={`${AppRoute.Room}/${offer.id}`} >
           <img className="place-card__image" src={offer.images[1]} width="260" height="200" alt="Place image" />
         </Link>
       </div>

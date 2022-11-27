@@ -8,6 +8,8 @@ export const changeCity = createAction<{
   city:string;
 }>('city/change');
 
+export const getCurrentPoint = createAction<OfferType>('offer/getCurrentPoint');
+
 export const changeTypeSorting = createAction<string>('offer/changeTypeSorting');
 
 export const loadOffers = createAction<OffersType>('data/loadOffers');

@@ -5,27 +5,34 @@ import {ReviewsList} from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import {OffersList} from '../../components/offers-list/offers-list';
 import {store, useAppSelector} from '../../store';
-import { useState} from 'react';
+import {useEffect} from 'react';
 import { OfferType} from '../../types/offer-type';
 import {ReviewType} from '../../types/reviews';
 import {Loading} from '../../components/loading/loading';
 import Header from '../../components/header/header';
+import {fetchCurrentOfferAction, fetchNearOffersAction} from '../../services/api-actions';
+import {useDispatch} from 'react-redux';
 
 export function Room(): JSX.Element {
   const {id} = useParams();
+  const offerId = Number(id);
+  const dispatch = useDispatch();
 
   const isAuth: boolean = useAppSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
 
-  const [, setActiveOffer] = useState<OfferType | undefined>(undefined);
+  const currentOffer = useAppSelector((state) => state.offer) as OfferType;
 
-  const currentOffer: OfferType | undefined = store.getState().offers.find((offer) => offer.id === Number(id));
-
-  const nearOffers: OfferType[] = useAppSelector((state) => state.nearOffers);
+  const nearOffers = useAppSelector((state) => state.nearOffers);
 
   const reviews: ReviewType[] = useAppSelector((state) => state.reviews);
 
   const root = document.getElementById('root') as HTMLElement;
   root.style.cssText = '';
+
+  useEffect(() => {
+    store.dispatch(fetchCurrentOfferAction(offerId));
+    store.dispatch(fetchNearOffersAction(offerId.toString()));
+  }, [dispatch, offerId]);
 
   if(currentOffer) {
     return (
@@ -126,7 +133,7 @@ export function Room(): JSX.Element {
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <OffersList offers={[...nearOffers]} onSetActiveOffer={setActiveOffer}/>
+              <OffersList offers={[...nearOffers]} />
             </section>
           </div>
         </main>
