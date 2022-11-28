@@ -1,15 +1,17 @@
 import {Offer} from '../offer/offer';
-import {useAppSelector} from '../../store';
+import { useAppSelector} from '../../store';
 import {SortTypes} from '../../const';
 import {OfferType} from '../../types/offer-type';
+import {Loading} from '../loading/loading';
 
 type OfferProps = {
   offers: OfferType[];
-  onSetActiveOffer: (offer: OfferType | undefined) => void;
+  onSetActiveOffer?: (offer: OfferType | undefined) => void;
 }
 
 export function OffersList({offers, onSetActiveOffer}: OfferProps) {
   const typeSorting = useAppSelector((state) => state.sortingType);
+  const isLoading = useAppSelector((state) => state.reviewsLoading);
 
   switch (typeSorting) {
     case SortTypes.PriceHighToLow:
@@ -27,9 +29,14 @@ export function OffersList({offers, onSetActiveOffer}: OfferProps) {
       break;
   }
 
-  return (
-    <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer) => <Offer offer={offer} key={offer.id} onSetActiveOffer={onSetActiveOffer} />)}
-    </div>
-  );
+
+  if (isLoading) {
+    return (<Loading />);
+  } else {
+    return (
+      <div className="cities__places-list places__list tabs__content">
+        {offers.map((offer) => <Offer offer={offer} key={offer.id} onSetActiveOffer={onSetActiveOffer}/>)}
+      </div>
+    );
+  }
 }

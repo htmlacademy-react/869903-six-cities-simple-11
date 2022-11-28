@@ -2,15 +2,20 @@ import {OffersList} from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import {Filter} from '../../components/filter/filter';
 import {CITY_FILTER} from '../../const';
-import {useAppSelector} from '../../store';
-import {useState} from 'react';
+import { useAppDispatch, useAppSelector} from '../../store';
+import {useEffect, useState} from 'react';
 import {Sort} from '../../components/sort/sort';
 import {OfferType} from '../../types/offer-type';
 import {Loading} from '../../components/loading/loading';
 import Header from '../../components/header/header';
-
+import {fetchOffersAction} from '../../services/api-actions';
 
 export function Main() : JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  }, [dispatch]);
 
   const [activeOffer, setActiveOffer] = useState<OfferType | undefined>(undefined);
 
@@ -24,7 +29,6 @@ export function Main() : JSX.Element {
   root.style.cssText = 'display: flex; flex-direction: column; overflow-y: hidden';
 
   if (cityOffers.length !== 0) {
-
     return (
       <>
         <Header />
