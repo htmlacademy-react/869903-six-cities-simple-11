@@ -10,8 +10,8 @@ type OfferProps = {
 }
 
 export function OffersList({offers, onSetActiveOffer}: OfferProps) {
-  const typeSorting = useAppSelector((state) => state.sortingType);
-  const isLoading = useAppSelector((state) => state.reviewsLoading);
+  const typeSorting = useAppSelector((state) => state.offers.sortingType);
+  const isLoading = useAppSelector((state) => state.offer.reviewsLoading);
 
   switch (typeSorting) {
     case SortTypes.PriceHighToLow:

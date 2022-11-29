@@ -1,19 +1,18 @@
 import {useAppDispatch, useAppSelector} from '../../store';
-import {changeCity} from '../../store/action';
+import {memo} from 'react';
+import {CITY_FILTER} from '../../const';
+import {changeCity} from '../../store/offers/action';
 
-type Props = {
-  cities: string[];
-}
-export function Filter(props: Props) {
-  const { cities } = props;
+function Filter() {
+
   const dispatch = useAppDispatch();
-  const activeCity = useAppSelector((state) => state.city);
+  const activeCity = useAppSelector((state) => state.offers.city);
 
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {cities.map((city) => (
+          {CITY_FILTER.map((city) => (
             <li className="locations__item" key={city}>
               <a
                 className={`locations__item-link tabs__item ${
@@ -34,3 +33,4 @@ export function Filter(props: Props) {
     </div>
   );
 }
+export default memo(Filter);

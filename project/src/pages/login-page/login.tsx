@@ -9,7 +9,7 @@ export function Login(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const isAuth: boolean = useAppSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
+  const isAuth: boolean = useAppSelector((state) => state.user.authorizationStatus) === AuthorizationStatus.Auth;
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

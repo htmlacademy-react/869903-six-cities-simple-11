@@ -12,7 +12,7 @@ type ReviewProps = {
 
 export function ReviewsList({reviews}: ReviewProps) {
   const params = useParams();
-  const isLoading = useAppSelector((state) => state.reviewsLoading);
+  const isLoading = useAppSelector((state) => state.offer.reviewsLoading);
 
   useEffect(() => {
     if(params.id) {
