@@ -4,11 +4,13 @@ import {logoutAction} from '../../services/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {memo} from 'react';
 import {setUserEmail} from '../../store/user/action';
+import {getAuthorizationStatus, getUserEmail} from '../../store/user/user-selector';
 
 function Header ():JSX.Element {
-  const isAuth: boolean = useAppSelector((state) => state.user.authorizationStatus) === AuthorizationStatus.Auth;
+  const isAuth: boolean = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
+
   const dispatch = useAppDispatch();
-  const userEmail = useAppSelector((state) => state.user.userEmail);
+  const userEmail = useAppSelector(getUserEmail);
 
   const handleSignOutClick = () => {
     dispatch(logoutAction());

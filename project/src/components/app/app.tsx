@@ -1,4 +1,3 @@
-import {Main} from '../../pages/main-page/main';
 import {Login} from '../../pages/login-page/login';
 import {Error} from '../../pages/error/error';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
@@ -12,7 +11,6 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />} path={AppRoute.Root} />
-        <Route element={<Main />} />
         <Route element={<Login />} path={AppRoute.Login} />
         <Route element={<Room />} path={`${AppRoute.Room}/:id`} />
         <Route element={<Error />} path={AppRoute.Error} />

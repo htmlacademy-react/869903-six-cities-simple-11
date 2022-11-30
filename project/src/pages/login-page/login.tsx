@@ -4,12 +4,13 @@ import {Link, useNavigate, Navigate} from 'react-router-dom';
 import {AuthData} from '../../types/auth-data';
 import {loginAction} from '../../services/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
+import {getAuthorizationStatus} from '../../store/user/user-selector';
 
 export function Login(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  const isAuth: boolean = useAppSelector((state) => state.user.authorizationStatus) === AuthorizationStatus.Auth;
+  const isAuth: boolean = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

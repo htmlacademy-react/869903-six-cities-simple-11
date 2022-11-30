@@ -1,4 +1,3 @@
-import {OffersList} from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import { useAppDispatch, useAppSelector} from '../../store';
 import {useEffect, useState} from 'react';
@@ -7,6 +6,8 @@ import {Loading} from '../../components/loading/loading';
 import {fetchOffersAction} from '../../services/api-actions';
 import Sort from '../../components/sort/sort';
 import Filter from '../../components/filter/filter';
+import OffersList from '../../components/offers-list/offers-list';
+import {getActiveCity, getOffersList} from '../../store/offers/offers-selector';
 
 export function Main() : JSX.Element {
   const dispatch = useAppDispatch();
@@ -17,9 +18,9 @@ export function Main() : JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<OfferType | undefined>(undefined);
 
-  const activeCity = useAppSelector((state) => state.offers.city);
+  const activeCity = useAppSelector(getActiveCity);
 
-  const offersList = useAppSelector((state) => state.offers.offers);
+  const offersList = useAppSelector(getOffersList);
 
   const cityOffers = offersList.slice().filter((offer: OfferType) => offer.city.name === activeCity);
 

@@ -2,11 +2,12 @@ import {useAppDispatch, useAppSelector} from '../../store';
 import {memo} from 'react';
 import {CITY_FILTER} from '../../const';
 import {changeCity} from '../../store/offers/action';
+import {getActiveCity} from '../../store/offers/offers-selector';
 
 function Filter() {
 
   const dispatch = useAppDispatch();
-  const activeCity = useAppSelector((state) => state.offers.city);
+  const activeCity = useAppSelector(getActiveCity);
 
   return (
     <div className="tabs">

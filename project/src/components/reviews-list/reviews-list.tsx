@@ -5,6 +5,7 @@ import {store, useAppSelector} from '../../store';
 import {fetchReviewsAction} from '../../services/api-actions';
 import {useParams} from 'react-router-dom';
 import {Loading} from '../loading/loading';
+import {getLoading} from '../../store/offers/offers-selector';
 
 type ReviewProps = {
   reviews: ReviewType[];
@@ -12,7 +13,7 @@ type ReviewProps = {
 
 export function ReviewsList({reviews}: ReviewProps) {
   const params = useParams();
-  const isLoading = useAppSelector((state) => state.offer.reviewsLoading);
+  const isLoading = useAppSelector(getLoading);
 
   useEffect(() => {
     if(params.id) {

@@ -2,10 +2,11 @@ import {useAppDispatch, useAppSelector} from '../../store';
 import {memo, useState} from 'react';
 import {sort} from '../../const';
 import {changeTypeSorting} from '../../store/offers/action';
+import {getTypeSorting} from '../../store/offers/offers-selector';
 
 function Sort() {
   const dispatch = useAppDispatch();
-  const currentTypeSorting = useAppSelector((state) => state.offers.sortingType);
+  const currentTypeSorting = useAppSelector(getTypeSorting);
   const [openSorting, setOpenSorting] = useState(false);
 
   return (
