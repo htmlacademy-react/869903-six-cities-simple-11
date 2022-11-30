@@ -7,7 +7,7 @@ type CommentProps = {
   hotelId: number;
 }
 
-export function Form({hotelId}: CommentProps) {
+export default function Form({hotelId}: CommentProps) {
   const content = {comment: '', rating: 0};
 
   const [formData, setFormData] = useState(content);

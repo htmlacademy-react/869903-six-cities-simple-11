@@ -1,30 +1,33 @@
 import { useParams} from 'react-router-dom';
 import { AuthorizationStatus, PROPERTY_RATING} from '../../const';
-import {Form} from '../../components/form/form';
 import {ReviewsList} from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
-import {OffersList} from '../../components/offers-list/offers-list';
 import {store, useAppSelector} from '../../store';
 import {useEffect} from 'react';
 import { OfferType} from '../../types/offer-type';
 import {ReviewType} from '../../types/reviews';
 import {Loading} from '../../components/loading/loading';
-import Header from '../../components/header/header';
 import {fetchCurrentOfferAction, fetchNearOffersAction} from '../../services/api-actions';
 import {useDispatch} from 'react-redux';
+import Form from '../../components/form/form';
+import Header from '../../components/header/header';
+import OffersList from '../../components/offers-list/offers-list';
+import {getAuthorizationStatus} from '../../store/user/user-selector';
+import {getCurrentOffer, getReviews} from '../../store/offer/offer-selector';
+import {getNearOffers} from '../../store/offers/offers-selector';
 
 export function Room(): JSX.Element {
   const {id} = useParams();
   const offerId = Number(id);
   const dispatch = useDispatch();
 
-  const isAuth: boolean = useAppSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
+  const isAuth: boolean = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
 
-  const currentOffer = useAppSelector((state) => state.offer) as OfferType;
+  const currentOffer = useAppSelector(getCurrentOffer) as OfferType;
 
-  const nearOffers = useAppSelector((state) => state.nearOffers);
+  const nearOffers = useAppSelector(getNearOffers);
 
-  const reviews: ReviewType[] = useAppSelector((state) => state.reviews);
+  const reviews: ReviewType[] = useAppSelector(getReviews);
 
   const root = document.getElementById('root') as HTMLElement;
   root.style.cssText = '';
@@ -37,7 +40,7 @@ export function Room(): JSX.Element {
   if(currentOffer) {
     return (
       <>
-        <Header />
+        <Header/>
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">
@@ -133,7 +136,7 @@ export function Room(): JSX.Element {
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <OffersList offers={[...nearOffers]} />
+              <OffersList offers={nearOffers} onSetActiveOffer={() => void 0}/>
             </section>
           </div>
         </main>

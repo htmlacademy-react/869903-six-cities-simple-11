@@ -1,23 +1,19 @@
 import {useAppDispatch, useAppSelector} from '../../store';
-import {useState} from 'react';
+import {memo, useState} from 'react';
 import {sort} from '../../const';
-import {changeTypeSorting} from '../../store/action';
-import {OfferType} from '../../types/offer-type';
+import {changeTypeSorting} from '../../store/offers/action';
+import {getTypeSorting} from '../../store/offers/offers-selector';
 
-type OfferSortingProps = {
-  offers: OfferType[];
-}
-
-export function Sort({offers}: OfferSortingProps) {
+function Sort() {
   const dispatch = useAppDispatch();
-  const currentTypeSorting = useAppSelector((state) => state.sortingType);
+  const currentTypeSorting = useAppSelector(getTypeSorting);
   const [openSorting, setOpenSorting] = useState(false);
 
   return (
     <form className="places__sorting" action="#" method="get">
-      <span className="places__sorting-caption">Sort by</span>
+      <span className="places__sorting-caption">Sort by </span>
       <span className="places__sorting-type" tabIndex={0} onClick={() => openSorting ? setOpenSorting(false) : setOpenSorting(true)}>
-                Popular
+        {currentTypeSorting}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -42,3 +38,4 @@ export function Sort({offers}: OfferSortingProps) {
     </form>
   );
 }
+export default memo(Sort);

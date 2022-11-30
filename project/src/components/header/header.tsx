@@ -2,12 +2,15 @@ import { Link } from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../store';
 import {logoutAction} from '../../services/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import {setUserEmail} from '../../store/action';
+import {memo} from 'react';
+import {setUserEmail} from '../../store/user/action';
+import {getAuthorizationStatus, getUserEmail} from '../../store/user/user-selector';
 
-export default function Header ():JSX.Element {
-  const isAuth: boolean = useAppSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
+function Header ():JSX.Element {
+  const isAuth: boolean = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
+
   const dispatch = useAppDispatch();
-  const userEmail = useAppSelector((state) => state.userEmail);
+  const userEmail = useAppSelector(getUserEmail);
 
   const handleSignOutClick = () => {
     dispatch(logoutAction());
@@ -60,3 +63,4 @@ export default function Header ():JSX.Element {
   );
 }
 
+export default memo(Header);

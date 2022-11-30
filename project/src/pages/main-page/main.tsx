@@ -1,14 +1,13 @@
-import {OffersList} from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
-import {Filter} from '../../components/filter/filter';
-import {CITY_FILTER} from '../../const';
 import { useAppDispatch, useAppSelector} from '../../store';
 import {useEffect, useState} from 'react';
-import {Sort} from '../../components/sort/sort';
 import {OfferType} from '../../types/offer-type';
 import {Loading} from '../../components/loading/loading';
-import Header from '../../components/header/header';
 import {fetchOffersAction} from '../../services/api-actions';
+import Sort from '../../components/sort/sort';
+import Filter from '../../components/filter/filter';
+import OffersList from '../../components/offers-list/offers-list';
+import {getActiveCity, getOffersList} from '../../store/offers/offers-selector';
 
 export function Main() : JSX.Element {
   const dispatch = useAppDispatch();
@@ -19,9 +18,9 @@ export function Main() : JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<OfferType | undefined>(undefined);
 
-  const activeCity = useAppSelector((state) => state.city);
+  const activeCity = useAppSelector(getActiveCity);
 
-  const offersList = useAppSelector((state) => state.offers);
+  const offersList = useAppSelector(getOffersList);
 
   const cityOffers = offersList.slice().filter((offer: OfferType) => offer.city.name === activeCity);
 
@@ -30,28 +29,25 @@ export function Main() : JSX.Element {
 
   if (cityOffers.length !== 0) {
     return (
-      <>
-        <Header />
-        <main className="page__main page__main--index">
-          <h1 className="visually-hidden">Cities</h1>
-          <Filter cities={CITY_FILTER}></Filter>
-          <div className="cities">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{cityOffers.length} places to stay in {activeCity}</b>
-                <Sort offers={cityOffers}/>
-                <OffersList offers={cityOffers} onSetActiveOffer={setActiveOffer}/>
+      <main className="page__main page__main--index">
+        <h1 className="visually-hidden">Cities</h1>
+        <Filter />
+        <div className="cities">
+          <div className="cities__places-container container">
+            <section className="cities__places places">
+              <h2 className="visually-hidden">Places</h2>
+              <b className="places__found">{cityOffers.length} places to stay in {activeCity}</b>
+              <Sort />
+              <OffersList offers={cityOffers} onSetActiveOffer={setActiveOffer}/>
+            </section>
+            <div className="cities__right-section">
+              <section className="cities__map map">
+                <Map city={cityOffers[0].city.location} points={cityOffers} selectedPoint={activeOffer}/>
               </section>
-              <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map city={cityOffers[0].city.location} points={cityOffers} selectedPoint={activeOffer}/>
-                </section>
-              </div>
             </div>
           </div>
-        </main>
-      </>
+        </div>
+      </main>
     );
   } else {
     return (
