@@ -7,7 +7,7 @@ import Sort from '../../components/sort/sort';
 import Filter from '../../components/filter/filter';
 import OffersList from '../../components/offers-list/offers-list';
 import {getActiveCity, getOffersList} from '../../store/offers/offers-selector';
-import MainEmpty from '../main-empty';
+import MainEmpty from '../../components/main-empty/main-empty';
 
 export function Main() : JSX.Element {
   const dispatch = useAppDispatch();
@@ -32,7 +32,7 @@ export function Main() : JSX.Element {
       <h1 className="visually-hidden">Cities</h1>
       <Filter />
       <div className="cities">
-        {cityOffers.length === 0
+        {!cityOffers.length
           ?
           <MainEmpty />
           :
