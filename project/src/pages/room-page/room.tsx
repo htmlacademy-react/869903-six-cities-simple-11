@@ -18,7 +18,6 @@ import {getNearOffers} from '../../store/offers/offers-selector';
 
 export function Room(): JSX.Element {
   const {id} = useParams();
-  const offerId = Number(id);
   const dispatch = useDispatch();
 
   const isAuth: boolean = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
@@ -33,9 +32,9 @@ export function Room(): JSX.Element {
   root.style.cssText = '';
 
   useEffect(() => {
-    store.dispatch(fetchCurrentOfferAction(offerId));
-    store.dispatch(fetchNearOffersAction(offerId.toString()));
-  }, [dispatch, offerId]);
+    store.dispatch(fetchCurrentOfferAction(Number(id)));
+    store.dispatch(fetchNearOffersAction(Number(id).toString()));
+  }, [dispatch, Number(id)]);
 
   if(currentOffer) {
     return (
