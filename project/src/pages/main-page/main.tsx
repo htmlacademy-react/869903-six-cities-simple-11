@@ -2,12 +2,12 @@ import Map from '../../components/map/map';
 import { useAppDispatch, useAppSelector} from '../../store';
 import {useEffect, useState} from 'react';
 import {OfferType} from '../../types/offer-type';
-import {Loading} from '../../components/loading/loading';
 import {fetchOffersAction} from '../../services/api-actions';
 import Sort from '../../components/sort/sort';
 import Filter from '../../components/filter/filter';
 import OffersList from '../../components/offers-list/offers-list';
 import {getActiveCity, getOffersList} from '../../store/offers/offers-selector';
+import MainEmpty from '../../components/main-empty/main-empty';
 
 export function Main() : JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,14 +25,17 @@ export function Main() : JSX.Element {
   const cityOffers = offersList.slice().filter((offer: OfferType) => offer.city.name === activeCity);
 
   const root = document.getElementById('root') as HTMLElement;
-  root.style.cssText = 'display: flex; flex-direction: column; overflow-y: hidden';
+  root.style.cssText = 'display: flex; flex-direction: column; overflow-y: hidden;height:100%';
 
-  if (cityOffers.length !== 0) {
-    return (
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <Filter />
-        <div className="cities">
+  return (
+    <main className="page__main page__main--index">
+      <h1 className="visually-hidden">Cities</h1>
+      <Filter />
+      <div className="cities">
+        {!cityOffers.length
+          ?
+          <MainEmpty />
+          :
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
@@ -45,13 +48,8 @@ export function Main() : JSX.Element {
                 <Map city={cityOffers[0].city.location} points={cityOffers} selectedPoint={activeOffer}/>
               </section>
             </div>
-          </div>
-        </div>
-      </main>
-    );
-  } else {
-    return (
-      <Loading />
-    );
-  }
+          </div>}
+      </div>
+    </main>
+  );
 }
