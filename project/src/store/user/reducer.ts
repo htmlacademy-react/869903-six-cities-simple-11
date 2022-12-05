@@ -1,11 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {
-  requireAuthorization,
-  sendComment, setError,
-  setUserEmail
-} from './action';
+import {sendComment, setError, setUserEmail} from './action';
 import {CommentType} from '../../types/comments';
 import {AuthorizationStatus} from '../../const';
+import {checkAuthAction, loginAction, logoutAction} from '../../services/api-actions/api-actions';
 
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
@@ -23,13 +20,27 @@ const initialState: InitialState = {
 
 export const userReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(requireAuthorization, (state, action) => {
-      state.authorizationStatus = action.payload;
+    .addCase(checkAuthAction.fulfilled, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
+    })
+    .addCase(checkAuthAction.rejected, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(loginAction.fulfilled, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
+    })
+    .addCase(loginAction.rejected, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(logoutAction.fulfilled, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
     })
     .addCase(setUserEmail, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
       state.userEmail = action.payload;
     })
     .addCase(sendComment, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
       state.comments = action.payload;
     })
     .addCase(setError, (state, action) => {

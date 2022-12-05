@@ -2,7 +2,7 @@ import Map from '../../components/map/map';
 import { useAppDispatch, useAppSelector} from '../../store';
 import {useEffect, useState} from 'react';
 import {OfferType} from '../../types/offer-type';
-import {fetchOffersAction} from '../../services/api-actions';
+import {fetchOffersAction} from '../../services/api-actions/api-actions';
 import Sort from '../../components/sort/sort';
 import Filter from '../../components/filter/filter';
 import OffersList from '../../components/offers-list/offers-list';

@@ -1,7 +1,7 @@
 import {FormEvent, useEffect, useState} from 'react';
 import {ChangeEvent} from 'react';
 import {useAppDispatch} from '../../store';
-import { sendNewComment} from '../../services/api-actions';
+import { sendNewComment} from '../../services/api-actions/api-actions';
 
 type CommentProps = {
   hotelId: number;

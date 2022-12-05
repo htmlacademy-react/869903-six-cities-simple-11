@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../store';
-import {logoutAction} from '../../services/api-actions';
+import {logoutAction} from '../../services/api-actions/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {memo} from 'react';
 import {setUserEmail} from '../../store/user/action';

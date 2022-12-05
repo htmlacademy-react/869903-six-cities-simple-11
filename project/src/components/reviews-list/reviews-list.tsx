@@ -2,7 +2,7 @@ import {Review} from '../review/review';
 import {ReviewType} from '../../types/reviews';
 import {useEffect} from 'react';
 import {store, useAppSelector} from '../../store';
-import {fetchReviewsAction} from '../../services/api-actions';
+import {fetchReviewsAction} from '../../services/api-actions/api-actions';
 import {useParams} from 'react-router-dom';
 import {Loading} from '../loading/loading';
 import {getLoading} from '../../store/offers/offers-selector';

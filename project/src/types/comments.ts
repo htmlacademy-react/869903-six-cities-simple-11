@@ -11,6 +11,8 @@ export type CommentType = {
   };
 }
 
+export type CommentsType = CommentType[];
+
 export type CommentSendType = {
   comment: string;
   rating: number;

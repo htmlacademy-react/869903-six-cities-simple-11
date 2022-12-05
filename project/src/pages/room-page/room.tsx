@@ -7,7 +7,7 @@ import {useEffect} from 'react';
 import { OfferType} from '../../types/offer-type';
 import {ReviewType} from '../../types/reviews';
 import {Loading} from '../../components/loading/loading';
-import {fetchCurrentOfferAction, fetchNearOffersAction} from '../../services/api-actions';
+import {fetchCurrentOfferAction, fetchNearOffersAction} from '../../services/api-actions/api-actions';
 import {useDispatch} from 'react-redux';
 import Form from '../../components/form/form';
 import Header from '../../components/header/header';
