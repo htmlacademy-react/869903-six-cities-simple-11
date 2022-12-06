@@ -8,8 +8,7 @@ import {BrowserRouter} from 'react-router-dom';
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.NoAuth},
-  APP: {userEmail: null}
+  user: {authorizationStatus: AuthorizationStatus.Unknown, userEmail: null},
 });
 
 describe('Component: Header', () => {

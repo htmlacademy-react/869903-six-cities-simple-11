@@ -6,6 +6,8 @@ import {AuthorizationStatus, AppRoute} from '../../const';
 import App from './app';
 import thunk from 'redux-thunk';
 import {makeComment, makeEmail, makeFakeAppProcessData, makeOffer, makeOffersList, makeReviews} from '../../utils';
+import React from 'react';
+import {nearOffers} from "../../store/offers/action";
 
 const fakeComment = makeComment();
 const middlewares = [thunk];
@@ -13,20 +15,33 @@ const mockStore = configureMockStore(middlewares);
 const fakeAppData = makeFakeAppProcessData();
 
 const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.Auth, email: makeEmail},
-  OFFERS:{ offersList: makeOffersList, loaders: {'offers-load': false}},
-  OFFER:{offer: makeOffer(), loaders: {'offer-load': false}, isOfferLoadedError:false},
-  REVIEWS:{commentsList: makeReviews, loaders: {'comments-load': false}},
-  NEARBY_OFFERS:{ nearbyOffers: makeOffersList, loaders: {'nearbyOffers-load': false}},
-  APP:{city: fakeAppData.city, focusCardId: fakeAppData.focusCardId,sortType: fakeAppData.sortType}
+  user: {
+    authorizationStatus: AuthorizationStatus.Unknown,
+    userEmail: makeEmail,
+    comments: makeReviews,
+    error: null,
+  },
+  offers:{
+    city: 'Paris',
+    offers: makeOffersList,
+    nearOffers: makeOffersList,
+    sortingType: 'popular',
+  },
+  offer:{
+    offer: makeOffer(),
+    reviews: makeReviews,
+    reviewsLoading: false,
+  },
 });
 
 const history = createMemoryHistory();
 
 const fakeApp = (
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
 );
 
 describe('Application Routing', () => {
@@ -35,7 +50,7 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getByText(new RegExp('places to stay in', 'i'))).toBeInTheDocument();
+    expect(screen.getByText(`${makeOffersList.length} places to stay in Paris`)).toBeInTheDocument();
   });
 
   it('should render "AuthScreen" when user navigate to "/login"', () => {
@@ -43,12 +58,12 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getByText('E-mail')).toBeInTheDocument();
+    expect(screen.getByText('Email')).toBeInTheDocument();
     expect(screen.getByText('Password')).toBeInTheDocument();
   });
 
   it('should render "PropertyPage" when user navigate to "/offer/:id"', () => {
-    history.push(`/offer/${fakeComment.hotelId}`);
+    history.push(`/offer/${makeComment().hotelId}`);
 
     render(fakeApp);
 
@@ -57,16 +72,14 @@ describe('Application Routing', () => {
   });
 
   it('should render "NotFoundScreen" when user navigate to non-existent route', () => {
-    history.push('/non-existent-route');
+    history.push(AppRoute.Error);
 
     render(fakeApp);
 
-    const headerElement = screen.getByText('404.');
-    const smallElement = screen.getByText('Page not found');
-    const linkElement = screen.getByText('Go to main page');
+    const headerElement = screen.getByText('No places to stay available');
+    const smallElement = screen.getByText('We could not find any property available at the moment in Dusseldorf');
 
     expect(headerElement).toBeInTheDocument();
-    expect(linkElement).toBeInTheDocument();
     expect(smallElement).toBeInTheDocument();
   });
 });

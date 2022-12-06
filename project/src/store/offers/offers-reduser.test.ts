@@ -1,6 +1,6 @@
 import {offersReducer} from './reducer';
 import {makeOffersList} from '../../utils';
-import { loadOffers, nearOffers} from './action';
+import {loadOffers, nearOffers} from './action';
 
 describe('Reducer: gameProcess', () => {
   const state = {

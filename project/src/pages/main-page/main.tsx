@@ -24,15 +24,13 @@ export function Main() : JSX.Element {
 
   const cityOffers = offersList.slice().filter((offer: OfferType) => offer.city.name === activeCity);
 
-  const root = document.getElementById('root') as HTMLElement;
-  root.style.cssText = 'display: flex; flex-direction: column; overflow-y: hidden;height:100%';
 
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <Filter />
       <div className="cities">
-        {!cityOffers.length
+        {cityOffers.length
           ?
           <MainEmpty />
           :

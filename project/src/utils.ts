@@ -1,5 +1,5 @@
 import { OfferCity, OfferType} from './types/offer-type';
-import { company, datatype, random} from 'faker';
+import {company, datatype, internet, random} from 'faker';
 import {ReviewType} from './types/reviews';
 import {CommentSendType} from './types/comments';
 
@@ -17,7 +17,7 @@ export const makeOffer = (): OfferType => ({
   id: 2,
   images: company.suffixes(),
   price: 5000,
-  title: 'Esmeralda Village',
+  title: 'Brussels',
   type: 'hotel',
   name: 'santa',
   rating: 4,
@@ -37,6 +37,19 @@ export const makeOffer = (): OfferType => ({
     isPro: false,
     name: 'Customer Brand Officer',
   },
+});
+
+export const makeFakeReview = ():ReviewType => ({
+  id: datatype.number(),
+  comment: random.word(),
+  date: datatype.number().toString(),
+  rating: datatype.number(),
+  user: {
+    avatarUrl: internet.url(),
+    id: datatype.number(),
+    isPro: datatype.boolean(),
+    name: random.word(),
+  }
 });
 
 export const makeReview = (): ReviewType => ({
@@ -74,3 +87,8 @@ export const makeFakeAppProcessData = () => ({
   sortType: random.word(),
 });
 
+
+export type makeAppProcessData = () => ({
+  offers: OfferType[];
+  onSetActiveOffer: (offers: OfferType | undefined) => void ;
+});

@@ -5,7 +5,7 @@ import {store, useAppSelector} from '../../store';
 import {fetchReviewsAction} from '../../services/api-actions/api-actions';
 import {useParams} from 'react-router-dom';
 import {Loading} from '../loading/loading';
-import {getLoading} from '../../store/offers/offers-selector';
+import {getLoading} from '../../store/offer/offer-selector';
 
 type ReviewProps = {
   reviews: ReviewType[];
