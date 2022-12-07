@@ -6,7 +6,7 @@ import {AppDispatch, Store} from '../types/store';
 import {ApiRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {AuthData} from '../types/auth-data';
 import {dropToken, saveToken} from './token';
-import {UserData} from '../types/user-data';
+import {ResponseUserData, UserData} from '../types/user-data';
 import {store} from '../store';
 import { ReviewType} from '../types/reviews';
 import {CommentSendType, CommentType} from '../types/comments';
@@ -90,7 +90,8 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     try {
-      await api.get(ApiRoute.Login);
+      const {data} = await api.get<ResponseUserData>(ApiRoute.Login);
+      dispatch(setUserEmail(data.email));
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
