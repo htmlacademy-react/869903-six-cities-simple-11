@@ -6,6 +6,7 @@ import {fetchReviewsAction} from '../../services/api-actions';
 import {useParams} from 'react-router-dom';
 import {Loading} from '../loading/loading';
 import {getLoading} from '../../store/offers/offers-selector';
+import {getSortedReviews} from '../../store/user/user-selector';
 
 type ReviewProps = {
   reviews: ReviewType[];
@@ -14,6 +15,8 @@ type ReviewProps = {
 export function ReviewsList({reviews}: ReviewProps) {
   const params = useParams();
   const isLoading = useAppSelector(getLoading);
+  const sortedReviews = useAppSelector(getSortedReviews).slice(0, 10);
+
 
   useEffect(() => {
     if(params.id) {
@@ -26,9 +29,10 @@ export function ReviewsList({reviews}: ReviewProps) {
     return (
       <section className="property__reviews reviews">
         <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-
         <ul className="reviews__list">
-          {reviews.map((review) => <Review review={review} key={review.id}/>)}
+          {sortedReviews.map((review) => (
+            <Review review={review} key={review.id}/>
+          ))}
         </ul>
       </section>
     );

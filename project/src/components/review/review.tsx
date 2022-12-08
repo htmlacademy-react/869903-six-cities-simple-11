@@ -32,7 +32,7 @@ export function Review(props: ReviewComponentProps) {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{format(new Date(review.date), 'dd/MM/yyyy')}</time>
+        <time className="reviews__time" dateTime="2019-04-24">{format(new Date(review.date), 'yyyy MMMM ')}</time>
       </div>
     </li>
   );

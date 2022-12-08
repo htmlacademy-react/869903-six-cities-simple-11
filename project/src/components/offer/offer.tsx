@@ -15,6 +15,10 @@ function Offer({offer, onSetActiveOffer}: OfferComponentProps) {
       onMouseOver={() => onSetActiveOffer(offer)}
       onMouseLeave={ () => onSetActiveOffer(undefined) }
     >
+      {offer.isPremium &&
+      <div className="place-card__mark">
+        <span>Premium</span>
+      </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Room}/${offer.id}`} >
           <img className="place-card__image" src={offer.images[1]} width="260" height="200" alt="Place image" />
