@@ -1,8 +1,8 @@
-import {Login} from '../../pages/login-page/login';
+import {Login} from '../../pages/login/login';
 import {Error} from '../../pages/error/error';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
-import {Room} from '../../pages/room-page/room';
+import {Room} from '../../pages/room/room';
 import Layout from '../../pages/layout/layout';
 
 

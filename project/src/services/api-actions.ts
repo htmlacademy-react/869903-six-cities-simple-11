@@ -10,9 +10,9 @@ import {UserData} from '../types/user-data';
 import {store} from '../store';
 import { ReviewType} from '../types/reviews';
 import {CommentSendType, CommentType} from '../types/comments';
-import {loadOffers, nearOffers} from '../store/offers/action';
-import {getCurrentPoint, loadReviews} from '../store/offer/action';
-import {requireAuthorization, setError, setUserEmail} from '../store/user/action';
+import {loadOffers, nearOffers} from '../store/offers/offers-action';
+import {getCurrentPoint, loadReviews} from '../store/offer/offer-action';
+import {requireAuthorization, setError, setUserEmail} from '../store/user/user-action';
 
 export const clearErrorAction = createAsyncThunk(
   'offer/clearError',

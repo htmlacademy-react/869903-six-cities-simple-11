@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {requireAuthorization, sendComment, setError, setUserEmail} from './action';
+import {requireAuthorization, sendComment, setError, setUserEmail} from './user-action';
 import {CommentType} from '../../types/comments';
 import {AuthorizationStatus} from '../../const';
 

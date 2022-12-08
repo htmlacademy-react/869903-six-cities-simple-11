@@ -3,7 +3,7 @@ import {
   changeCity,
   changeTypeSorting,
   loadOffers, nearOffers,
-} from './action';
+} from './offers-action';
 import {OffersType, OfferType} from '../../types/offer-type';
 
 type InitialState = {
