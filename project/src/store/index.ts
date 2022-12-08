@@ -2,9 +2,9 @@ import {configureStore} from '@reduxjs/toolkit';
 import {AppDispatch, Store} from '../types/store';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {createAPI} from '../services/api';
-import {userReducer} from './user/reducer';
-import {offersReducer} from './offers/reducer';
-import {offerReducer} from './offer/reducer';
+import {userReducer} from './user/user-reducer';
+import {offersReducer} from './offers/offers-reducer';
+import {offerReducer} from './offer/offer-reducer';
 
 
 export const api = createAPI();

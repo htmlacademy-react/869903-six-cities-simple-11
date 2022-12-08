@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from '../../store';
 import {logoutAction} from '../../services/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {memo} from 'react';
-import {setUserEmail} from '../../store/user/action';
+import {setUserEmail} from '../../store/user/user-action';
 import {getAuthorizationStatus, getUserEmail} from '../../store/user/user-selector';
 
 function Header ():JSX.Element {

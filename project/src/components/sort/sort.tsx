@@ -1,7 +1,7 @@
 import {useAppDispatch, useAppSelector} from '../../store';
 import {memo, useState} from 'react';
 import {sort} from '../../const';
-import {changeTypeSorting} from '../../store/offers/action';
+import {changeTypeSorting} from '../../store/offers/offers-action';
 import {getTypeSorting} from '../../store/offers/offers-selector';
 
 function Sort() {

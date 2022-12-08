@@ -1,7 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {OfferType} from '../../types/offer-type';
 import {ReviewType} from '../../types/reviews';
-import {getCurrentPoint, loadReviews, reviewsLoading} from './action';
+import {getCurrentPoint, loadReviews, reviewsLoading} from './offer-action';
 
 type InitialState = {
   offer: OfferType | null;
