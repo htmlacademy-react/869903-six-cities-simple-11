@@ -135,6 +135,6 @@ export const sendNewComment = createAsyncThunk<void, CommentSendType, {
   async ({comment, rating, hotelId}, {dispatch, extra: api}) => {
 
     await api.post<CommentType>(`${ApiRoute.Reviews}/${hotelId}`, {comment, rating});
-    store.dispatch(fetchReviewsAction(hotelId.toString()));
+    dispatch(fetchReviewsAction(hotelId.toString()));
   }
 );
