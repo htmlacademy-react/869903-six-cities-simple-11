@@ -6,7 +6,6 @@ import {store, useAppSelector} from '../../store';
 import {useEffect} from 'react';
 import { OfferType} from '../../types/offer-type';
 import {ReviewType} from '../../types/reviews';
-import {Loading} from '../../components/loading/loading';
 import {fetchCurrentOfferAction, fetchNearOffersAction} from '../../services/api-actions';
 import {useDispatch} from 'react-redux';
 import Form from '../../components/form/form';
@@ -15,6 +14,7 @@ import OffersList from '../../components/offers-list/offers-list';
 import {getAuthorizationStatus} from '../../store/user/user-selector';
 import {getCurrentOffer, getReviews} from '../../store/offer/offer-selector';
 import {getNearOffers} from '../../store/offers/offers-selector';
+import {Error} from '../error/error';
 
 export function Room(): JSX.Element {
   const {id} = useParams();
@@ -31,6 +31,7 @@ export function Room(): JSX.Element {
 
   const root = document.getElementById('root') as HTMLElement;
   root.style.cssText = '';
+
 
   useEffect(() => {
     store.dispatch(fetchCurrentOfferAction(param));
@@ -144,7 +145,7 @@ export function Room(): JSX.Element {
     );
   } else {
     return (
-      <Loading />
+      <Error />
     );
   }
 }

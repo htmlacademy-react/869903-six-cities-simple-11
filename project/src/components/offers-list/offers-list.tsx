@@ -20,10 +20,10 @@ export default function OffersList({offers, onSetActiveOffer}: OfferProps) {
 
 
   switch (typeSorting) {
-    case SortTypes.PriceHighToLow:
+    case SortTypes.PriceLowToHigh:
       offers = [...offers].sort((a, b) => a.price - b.price);
       break;
-    case SortTypes.PriceLowToHigh:
+    case SortTypes.PriceHighToLow:
       offers = [...offers].sort((a, b) => a.price - b.price).reverse();
       break;
     case SortTypes.TopRatedFirst:
