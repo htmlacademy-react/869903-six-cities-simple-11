@@ -3,7 +3,7 @@ import {useAppDispatch} from '../../store';
 import { sendNewComment} from '../../services/api-actions';
 import {ReviewType} from '../../types/reviews';
 import {Ratings} from '../../types/comments';
-import {DEFAULT_RATING, MAX_LENGTH_COMMENT, MIN_LENGTH_COMMENT} from '../../const';
+import {CommentLength, DEFAULT_RATING} from '../../const';
 
 type CommentProps = {
   hotelId: number;
@@ -86,8 +86,8 @@ export default function Form({hotelId}: CommentProps) {
            type="submit"
            disabled={
              review.rating === DEFAULT_RATING ||
-            review.comment.length < MIN_LENGTH_COMMENT ||
-            review.comment.length >= MAX_LENGTH_COMMENT ||
+            review.comment.length < CommentLength.MinLength ||
+            review.comment.length >= CommentLength.MaxLength ||
             isSendReview
            }
          >

@@ -77,14 +77,23 @@ export function Room(): JSX.Element {
                     {currentOffer?.type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {currentOffer?.bedrooms} Bedrooms
+                    {currentOffer?.bedrooms}
+                    {
+                      (currentOffer?.bedrooms === 1) ?
+                        ' Bedroom' : ' Bedrooms'
+                    }
+
                   </li>
                   <li className="property__feature property__feature--adults">
-                Max {currentOffer?.maxAdults} adults
+                Max {currentOffer?.maxAdults}
+                    {
+                      currentOffer.maxAdults === 1 ?
+                        ' adult' : ' adults'
+                    }
                   </li>
                 </ul>
                 <div className="property__price">
-                  <b className="property__price-value">{currentOffer?.price}</b>
+                  <b className="property__price-value">€{currentOffer?.price}</b>
                   <span className="property__price-text">&nbsp;night</span>
                 </div>
                 <div className="property__inside">

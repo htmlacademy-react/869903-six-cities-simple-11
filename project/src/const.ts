@@ -62,6 +62,7 @@ export const TIMEOUT_SHOW_ERROR = 2000;
 
 export const DEFAULT_RATING = 0;
 
-export const MIN_LENGTH_COMMENT = 50;
-
-export const MAX_LENGTH_COMMENT = 300;
+export enum CommentLength {
+  MinLength = 50,
+  MaxLength = 300,
+}
